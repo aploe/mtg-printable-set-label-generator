@@ -146,7 +146,7 @@ class LabelGenerator:
             "width": 2970,
             "height": 2100,
             "cols": 4,
-            "rows": 15
+            "rows": 15,
             "margin": 200,
         },
         "a4-vertical": {
@@ -161,7 +161,7 @@ class LabelGenerator:
             "height": 2970,
             "cols": 2,
             "rows": 9,
-            "margin": 200,
+            "margin": 60,
             "start-x": 120,
             "start-y": 112,
         },
