@@ -156,6 +156,15 @@ class LabelGenerator:
             "rows": 15,
             "margin": 200,
         },
+        "avery-60x25-R": {
+            "width": 2100,
+            "height": 2970,
+            "cols": 2,
+            "rows": 9,
+            "margin": 200,
+            "start-x": 120,
+            "start-y": 112,
+        },
     }
     DEFAULT_PAPER_SIZE = "a4"
 
@@ -175,8 +184,8 @@ class LabelGenerator:
         self.COLS = paper["cols"]
         self.ROWS = paper["rows"]
         self.MARGIN = paper["margin"]
-        self.START_X = self.MARGIN
-        self.START_Y = self.MARGIN
+        self.START_X = paper.get("start-x", self.MARGIN)
+        self.START_Y = paper.get("start-y", self.MARGIN)
 
         # These are the deltas between rows and columns
         self.delta_x = (self.width - (2 * self.MARGIN)) / self.COLS
