@@ -133,6 +133,9 @@ RENAME_SETS = {
 class LabelGenerator:
 
     DEFAULT_OUTPUT_DIR = Path(os.getcwd()) / "output"
+    DEFAULT_MARGIN = 200
+    DEFAULT_MARGIN_INNER = 30
+    DEFAULT_ICON_X = 490
 
     PAPER_SIZES = {
         "letter": {
@@ -140,30 +143,34 @@ class LabelGenerator:
             "height": 2160,
             "cols": 4,
             "rows": 15,
-            "margin": 200,
         },
         "a4": {
             "width": 2970,
             "height": 2100,
             "cols": 4,
             "rows": 15,
-            "margin": 200,
         },
         "a4-vertical": {
             "width": 2100,
             "height": 2970,
             "cols": 3,
             "rows": 15,
-            "margin": 200,
         },
         "avery-60x25-R": {
             "width": 2100,
             "height": 2970,
-            "cols": 2,
+            "cols": 3,
             "rows": 9,
+            # Page margins
+            "page-margin-width": 90,
+            "page-margin-height": 120,
+            # Margin of the print labels
             "margin": 60,
-            "start-x": 120,
-            "start-y": 112,
+            # Inner margin of each label
+            "margin-inner-width": 50,
+            "margin-inner-height": 40,
+            # Moving icon on x-axis
+            "icon-x": 510,
         },
     }
     DEFAULT_PAPER_SIZE = "a4"
@@ -183,13 +190,23 @@ class LabelGenerator:
         self.height = paper["height"]
         self.COLS = paper["cols"]
         self.ROWS = paper["rows"]
-        self.MARGIN = paper["margin"]
-        self.START_X = paper.get("start-x", self.MARGIN)
-        self.START_Y = paper.get("start-y", self.MARGIN)
+        self.MARGIN = paper.get("margin", self.DEFAULT_MARGIN)
+        self.MARGIN_X = paper.get("margin-x", self.MARGIN)
+        self.MARGIN_Y = paper.get("margin-y", self.MARGIN)
+        self.START_X = paper.get("page-margin-width", self.MARGIN_X)
+        self.START_Y = paper.get("page-margin-height", self.MARGIN_Y)
+        self.MARGIN_INNER = paper.get("margin-inner", self.DEFAULT_MARGIN)
+        self.MARGIN_INNER_X = paper.get("margin-inner-width", self.MARGIN_INNER)
+        self.MARGIN_INNER_Y = paper.get("margin-inner-height", self.MARGIN_INNER)
+        self.ICON_X = paper.get("icon-x", self.DEFAULT_ICON_X)
+
+        # Calc new start coords by accounting for page margins
+        self.START_X = self.START_X - ( self.MARGIN_X / 2 )
+        self.START_Y = self.START_Y - ( self.MARGIN_Y / 2 )
 
         # These are the deltas between rows and columns
-        self.delta_x = (self.width - (2 * self.MARGIN)) / self.COLS
-        self.delta_y = (self.height - (2 * self.MARGIN)) / self.ROWS
+        self.delta_x = (self.width - (2 * self.START_X)) / self.COLS
+        self.delta_y = (self.height - (2 * self.START_Y)) / self.ROWS
 
         self.output_dir = Path(output_dir)
 
@@ -215,6 +232,11 @@ class LabelGenerator:
                 vertical_guides=self.create_vertical_cutting_guides(),
                 WIDTH=self.width,
                 HEIGHT=self.height,
+                LABEL_WIDTH=self.delta_x,
+                LABEL_HEIGHT=self.delta_y,
+                MARGIN_INNER_X=self.MARGIN_INNER_X,
+                MARGIN_INNER_Y=self.MARGIN_INNER_Y,
+                ICON_X=self.ICON_X,
             )
             outfile_svg = self.output_dir / f"labels-{self.paper_size}-{page:02}.svg"
             outfile_pdf = str(
@@ -319,18 +341,18 @@ class LabelGenerator:
         for i in range(self.ROWS + 1):
             horizontal_guides.append(
                 {
-                    "x1": self.MARGIN / 2,
-                    "x2": self.MARGIN * 0.8,
-                    "y1": self.MARGIN + i * self.delta_y,
-                    "y2": self.MARGIN + i * self.delta_y,
+                    "x1": self.START_X / 2,
+                    "x2": self.START_X * 0.8,
+                    "y1": self.START_Y + i * self.delta_y,
+                    "y2": self.START_Y + i * self.delta_y,
                 }
             )
             horizontal_guides.append(
                 {
-                    "x1": self.width - self.MARGIN / 2,
-                    "x2": self.width - self.MARGIN * 0.8,
-                    "y1": self.MARGIN + i * self.delta_y,
-                    "y2": self.MARGIN + i * self.delta_y,
+                    "x1": self.width - self.START_X / 2,
+                    "x2": self.width - self.START_X * 0.8,
+                    "y1": self.START_Y + i * self.delta_y,
+                    "y2": self.START_Y + i * self.delta_y,
                 }
             )
 
@@ -342,18 +364,18 @@ class LabelGenerator:
         for i in range(self.COLS + 1):
             vertical_guides.append(
                 {
-                    "x1": self.MARGIN + i * self.delta_x,
-                    "x2": self.MARGIN + i * self.delta_x,
-                    "y1": self.MARGIN / 2,
-                    "y2": self.MARGIN * 0.8,
+                    "x1": self.START_X + i * self.delta_x,
+                    "x2": self.START_X + i * self.delta_x,
+                    "y1": self.START_Y / 2,
+                    "y2": self.START_Y * 0.8,
                 }
             )
             vertical_guides.append(
                 {
-                    "x1": self.MARGIN + i * self.delta_x,
-                    "x2": self.MARGIN + i * self.delta_x,
-                    "y1": self.height - self.MARGIN / 2,
-                    "y2": self.height - self.MARGIN * 0.8,
+                    "x1": self.START_X + i * self.delta_x,
+                    "x2": self.START_X + i * self.delta_x,
+                    "y1": self.height - self.START_Y / 2,
+                    "y2": self.height - self.START_Y * 0.8,
                 }
             )
 
