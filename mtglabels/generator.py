@@ -50,7 +50,7 @@ SET_TYPES = (
 
 # Only include sets at least this size
 # For reference, the smallest proper expansion is Arabian Nights with 78 cards
-MINIMUM_SET_SIZE = 8
+MINIMUM_SET_SIZE = 10
 
 # Set codes you might want to ignore
 IGNORED_SETS = (
