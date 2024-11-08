@@ -67,6 +67,7 @@ RENAME_SETS = {
     "Chronicles Foreign Black Border": "Chronicles FBB",
     "Commander Anthology Volume II": "Commander Anthology II",
     "Commander Legends: Battle for Baldur's Gate": "CMDR Legends: Baldur's Gate",
+    "Commander Legends: Battle for Baldur's Gate Minigames": "CMDR Legends: Baldur's Gate Minigames",
     "Dominaria United Commander": "Dominaria United [C]",
     "Duel Decks: Elves vs. Goblins": "DD: Elves vs. Goblins",
     "Duel Decks: Jace vs. Chandra": "DD: Jace vs. Chandra",
