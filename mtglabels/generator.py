@@ -134,18 +134,32 @@ class LabelGenerator:
 
     DEFAULT_OUTPUT_DIR = Path(os.getcwd()) / "output"
 
-    COLS = 4
-    ROWS = 15
-    MARGIN = 200  # in 1/10 mm
-    START_X = MARGIN
-    START_Y = MARGIN
-
     PAPER_SIZES = {
-        "letter": {"width": 2790, "height": 2160, },  # in 1/10 mm
-        "a4": {"width": 2970, "height": 2100, },
-        "a4-vertical": {"width": 2100, "height": 2970, },
+        "letter": {
+            "width": 2790,
+            "height": 2160,
+            "cols": 4,
+            "rows": 15,
+            "margin": 200,
+        },
+        "a4": {
+            "width": 2970,
+            "height": 2100,
+            "cols": 4,
+            "rows": 15
+            "margin": 200,
+        },
+        "a4-vertical": {
+            "width": 2100,
+            "height": 2970,
+            "cols": 3,
+            "rows": 15,
+            "margin": 200,
+        },
     }
     DEFAULT_PAPER_SIZE = "a4"
+
+    
 
     def __init__(self, paper_size=DEFAULT_PAPER_SIZE, output_dir=DEFAULT_OUTPUT_DIR):
         self.paper_size = paper_size
@@ -158,6 +172,11 @@ class LabelGenerator:
 
         self.width = paper["width"]
         self.height = paper["height"]
+        self.COLS = paper["cols"]
+        self.ROWS = paper["rows"]
+        self.MARGIN = paper["margin"]
+        self.START_X = self.MARGIN
+        self.START_Y = self.MARGIN
 
         # These are the deltas between rows and columns
         self.delta_x = (self.width - (2 * self.MARGIN)) / self.COLS
