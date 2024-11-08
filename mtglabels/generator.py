@@ -26,30 +26,31 @@ import cairosvg
 
 # Set types we are interested in
 SET_TYPES = (
-    "core",
-    "expansion",
-    "starter",  # Portal, P3k, welcome decks
-    "masters",
-    "commander",
-    "planechase",
-    "draft_innovation",  # Battlebond, Conspiracy
-    "duel_deck",  # Duel Deck Elves,
-    "premium_deck",  # Premium Deck Series: Slivers, Premium Deck Series: Graveborn
-    "from_the_vault",  # Make sure to adjust the MINIMUM_SET_SIZE if you want these
-    "archenemy",
-    "box",
-    "funny",  # Unglued, Unhinged, Ponies: TG, etc.
-    # "memorabilia",  # Commander's Arsenal, Celebration Cards, World Champ Decks
-    # "spellbook",
+    "core",             # https://scryfall.com/sets?type=core
+    "expansion",        # https://scryfall.com/sets?type=expansion
+    "starter",          # Portal, P3k, welcome decks // https://scryfall.com/sets?type=starter
+    "masters",          # https://scryfall.com/sets?type=masters
+    "commander",        # https://scryfall.com/sets?type=commander
+    "planechase",       # https://scryfall.com/sets?type=planechase
+    "draft_innovation", # Battlebond, Conspiracy // https://scryfall.com/sets?type=draft_innovation
+    "duel_deck",        # Duel Deck Elves // https://scryfall.com/sets?type=duel_deck
+    # "premium_deck",     # Premium Deck Series: Slivers, Premium Deck Series: Graveborn // https://scryfall.com/sets?type=premium_deck
+    "from_the_vault",   # Make sure to adjust the MINIMUM_SET_SIZE if you want these // https://scryfall.com/sets?type=from_the_vault
+    "archenemy",        # https://scryfall.com/sets?type=archenemy
+    # "box",              # https://scryfall.com/sets?type=box
+    "funny",            # Unglued, Unhinged, Ponies: TG, etc. // https://scryfall.com/sets?type=funny
+    # "minigame",      # https://scryfall.com/sets?type=minigame
+    # "memorabilia",      # Commander's Arsenal, Celebration Cards, World Champ Decks // https://scryfall.com/sets?type=memorabilia
+    # "spellbook",        # https://scryfall.com/sets?type=spellbook
     # These are relatively large groups of sets
     # You almost certainly don't want these
-    "token",
-    # "promo",
+    # "token",            # https://scryfall.com/sets?type=token
+    # "promo",            # https://scryfall.com/sets?type=promo
 )
 
 # Only include sets at least this size
 # For reference, the smallest proper expansion is Arabian Nights with 78 cards
-MINIMUM_SET_SIZE = 50
+MINIMUM_SET_SIZE = 8
 
 # Set codes you might want to ignore
 IGNORED_SETS = (
@@ -67,8 +68,8 @@ RENAME_SETS = {
     "Archenemy: Nicol Bolas Schemes": "Archenemy: Bolas Schemes",
     "Chronicles Foreign Black Border": "Chronicles FBB",
     "Commander Anthology Volume II": "Commander Anthology II",
-    "Commander Legends: Battle for Baldur's Gate": "CMDR Legends: Baldur's Gate",
-    "Commander Legends: Battle for Baldur's Gate Minigames": "CMDR Legends: Baldur's Gate Minigames",
+    "Commander Legends: Battle for Baldur's Gate": "Commander Legends: Baldur's Gate",
+    "Commander Legends: Battle for Baldur's Gate Minigames": "Commander Legends: Baldur's Gate Minigames",
     "Dominaria United Commander": "Dominaria United [C]",
     "Duel Decks: Elves vs. Goblins": "DD: Elves vs. Goblins",
     "Duel Decks: Jace vs. Chandra": "DD: Jace vs. Chandra",
