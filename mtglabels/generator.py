@@ -90,6 +90,7 @@ RENAME_SETS = {
     "Duel Decks: Elves vs. Inventors": "DD: Elves vs. Inventors",
     "Duel Decks: Mirrodin Pure vs. New Phyrexia": "DD: Mirrodin vs.New Phyrexia",
     "Duel Decks: Izzet vs. Golgari": "Duel Decks: Izzet vs. Golgari",
+    "Duskmourn: House of Horror Commander": "Duskmourn: House of Horror [C]",
     "Fourth Edition Foreign Black Border": "Fourth Edition FBB",
     "Global Series Jiang Yanggu & Mu Yanling": "Jiang Yanggu & Mu Yanling",
     "Innistrad: Crimson Vow Minigames": "Crimson Vow Minigames",
