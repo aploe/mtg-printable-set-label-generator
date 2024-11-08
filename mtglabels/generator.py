@@ -43,7 +43,7 @@ SET_TYPES = (
     # "spellbook",
     # These are relatively large groups of sets
     # You almost certainly don't want these
-    # "token",
+    "token",
     # "promo",
 )
 
@@ -53,9 +53,10 @@ MINIMUM_SET_SIZE = 50
 
 # Set codes you might want to ignore
 IGNORED_SETS = (
-    "cmb1",  # Mystery Booster Playtest Cards
-    "amh1",  # Modern Horizon Art Series
-    "cmb2",  # Mystery Booster Playtest Cards Part Deux
+    "DA1",  # Mystery Booster Playtest Cards
+    # "cmb1",  # Mystery Booster Playtest Cards
+    # "amh1",  # Modern Horizon Art Series
+    # "cmb2",  # Mystery Booster Playtest Cards Part Deux
 )
 
 # Used to rename very long set names
@@ -142,8 +143,9 @@ class LabelGenerator:
     PAPER_SIZES = {
         "letter": {"width": 2790, "height": 2160, },  # in 1/10 mm
         "a4": {"width": 2970, "height": 2100, },
+        "a4-vertical": {"width": 2100, "height": 2970, },
     }
-    DEFAULT_PAPER_SIZE = "letter"
+    DEFAULT_PAPER_SIZE = "a4"
 
     def __init__(self, paper_size=DEFAULT_PAPER_SIZE, output_dir=DEFAULT_OUTPUT_DIR):
         self.paper_size = paper_size
