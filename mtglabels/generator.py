@@ -182,7 +182,6 @@ class LabelGenerator:
     }
     DEFAULT_PAPER_SIZE = "a4"
 
-    
 
     def __init__(self, paper_size=DEFAULT_PAPER_SIZE, output_dir=DEFAULT_OUTPUT_DIR):
         self.paper_size = paper_size
