@@ -142,7 +142,6 @@ class LabelGenerator:
     DEFAULT_OUTPUT_DIR = Path(os.getcwd()) / "output"
     DEFAULT_MARGIN = 200
     DEFAULT_MARGIN_INNER = 30
-    DEFAULT_ICON_X = 490
 
     PAPER_SIZES = {
         "letter": {
@@ -176,8 +175,6 @@ class LabelGenerator:
             # Inner margin of each label
             "margin-inner-width": 50,
             "margin-inner-height": 40,
-            # Moving icon on x-axis
-            "icon-x": 510,
         },
     }
     DEFAULT_PAPER_SIZE = "a4"
@@ -204,7 +201,6 @@ class LabelGenerator:
         self.MARGIN_INNER = paper.get("margin-inner", self.DEFAULT_MARGIN)
         self.MARGIN_INNER_X = paper.get("margin-inner-width", self.MARGIN_INNER)
         self.MARGIN_INNER_Y = paper.get("margin-inner-height", self.MARGIN_INNER)
-        self.ICON_X = paper.get("icon-x", self.DEFAULT_ICON_X)
 
         # Calc new start coords by accounting for page margins
         self.START_X = self.START_X - ( self.MARGIN_X / 2 )
@@ -241,8 +237,7 @@ class LabelGenerator:
                 LABEL_WIDTH=self.delta_x,
                 LABEL_HEIGHT=self.delta_y,
                 MARGIN_INNER_X=self.MARGIN_INNER_X,
-                MARGIN_INNER_Y=self.MARGIN_INNER_Y,
-                ICON_X=self.ICON_X,
+                MARGIN_INNER_Y=self.MARGIN_INNER_Y
             )
             outfile_svg = self.output_dir / f"labels-{self.paper_size}-{page:02}.svg"
             outfile_pdf = str(
