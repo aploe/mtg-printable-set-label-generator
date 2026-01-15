@@ -55,6 +55,9 @@ The labels are designed for US Letter paper but this can be customized:
     python mtglabels/generator.py --paper-size=a4   # Use A4 paper size
     python mtglabels/generator.py --help   # Show all options
 
+    Standard for home use (aploe)
+    python3 mtglabels/generator.py --paper-size=avery-60x25-R
+
 You can generate labels for specific sets as well:
 
     python mtglabels/generator.py lea mh1 mh2 neo
